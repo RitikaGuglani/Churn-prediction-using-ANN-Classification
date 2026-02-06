@@ -1,0 +1,55 @@
+conda activate venv/
+streamlit run app.py  
+
+1. conda create -p venv python==3.11 -y (to create environment)
+    Here is a breakdown of each component:
+    conda create: This is the main command that instructs Conda to build a new environment.
+    -p venv:
+    The -p (or --prefix) flag specifies the exact path where the new environment should be created, rather than using the default Conda environments directory.
+    In this case, venv refers to a folder named venv in your current working directory. You can replace venv with any path you prefer (e.g., C:\projects\myenv or ./myenv).
+    python==3.11:
+    This specifies the package and version to install in the new environment.
+    It tells Conda to install the Python interpreter version exactly 3.11 (e.g., Python 3.11.x).
+    -y:
+    This flag (short for --yes) automatically proceeds with the installation without prompting for a manual "y" confirmation when Conda lists the packages to be installed. 
+
+
+2. from sklearn.model_selection import train_test_split:
+    The purpose of the sklearn.model_selection.train_test_split function is to divide a dataset into two distinct subsets: a training set and a testing set. 
+    This is a crucial step in machine learning for ensuring the model is evaluated on unseen data, which provides an unbiased assessment of its performance and ability to generalize to real-world scenarios.
+    
+    from sklearn.model_selection import train_test_split
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, 
+        test_size=0.2, 
+        random_state=42,
+        stratify=y)
+
+3.Example of a manual split:
+    import pandas as pd
+
+    df = pd.read_csv("data.csv")
+
+    train_size = int(0.8 * len(df))
+    train = df.iloc[:train_size]
+    test = df.iloc[train_size:]
+
+    This works, but notice the hidden problems:
+
+    ❌ If your data is sorted (time, label, difficulty, etc.),
+    your train and test will be biased
+    ❌ No randomization
+    ❌ No control over reproducibility
+    ❌ No stratification (class balance can break)
+    ❌ Easy to mismatch X and y
+    ❌ You may accidentally leak information
+
+
+    Manual splitting is useful when:
+    👉Time series data (you should not shuffle)
+    train = df[:'2024-01-01']
+    test = df['2024-01-02':]
+    👉Special business rules
+    Example:
+    Train on customers from region A, test on region B (Sklearn can’t infer this logic.)
