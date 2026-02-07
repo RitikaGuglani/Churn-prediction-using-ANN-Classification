@@ -5,3 +5,4 @@ scikit-learn
 tensorboard
 matplotlib
 streamlit>=1.31.0
+scikeras
