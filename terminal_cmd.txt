@@ -1,6 +1,17 @@
 conda activate venv/
 streamlit run app.py  
 
+keras lib dense class used to create hidden neurons
+To create ANN:
+1. Initialise a sequential network
+2. To create a hidden neuron use Dense Class(eg,64 hidden nodes)
+3. Activation Function(sigmoid, tanh, relu (preffered in inner hidden layers) , leaky relu, elu, softmax)
+4. Optimiser(backpropogation->useful in updating the weights)
+5. loss function minimising, based on this we'll get our gradient decent(global/local minima)
+6. Metrics(Accuracy-classification, MSE,MAE,MPSE,RMSE-Regression)
+7. Training Info->stored as logs in folder, so that we'll be able to use Tensorboard lib,
+ whose aim is to display these logs(visualize) in a way we'll  be able to understand(graphs)
+
 1. conda create -p venv python==3.11 -y (to create environment)
     Here is a breakdown of each component:
     conda create: This is the main command that instructs Conda to build a new environment.
